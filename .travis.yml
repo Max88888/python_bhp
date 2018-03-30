@@ -1,4 +1,4 @@
-language: cpp
+language: python
 
 # safelist
 branches:
@@ -6,10 +6,13 @@ branches:
   - master
   - dev
 
-compiler:
-  - gcc
+python:
+  - "3.6"
 
 cache: ccache
+
+install:
+  - pip install --pre github3.py
 
 os:
   - linux
