@@ -16,4 +16,4 @@ os:
   - linux
 
 
-script: sudo chmod 755 hello.py&&sudo ./hello.py
+script: sudo chmod 755 hello.py&&python hello.py
