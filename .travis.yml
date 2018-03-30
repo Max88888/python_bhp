@@ -9,29 +9,11 @@ branches:
 python:
   - "3.6"
 
-cache: ccache
-
 install:
   - pip install --pre github3.py
 
 os:
   - linux
 
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-#      - libevent-dev
-#      - gcc-4.8
-#      - g++-4.8
-
-
-
-before_install:
-
-
-install:
-#  - if [[ "$TRAVIS_OS_NAME" != "osx" && "$CXX" = "g++" ]]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
 
 script: sudo chmod 755 hello.py&&sudo ./hello.py
