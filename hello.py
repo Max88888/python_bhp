@@ -11,7 +11,7 @@ import os
 
 from github3 import login
 
-trojan_id = "abc"
+trojan_id = "cfg"
 
 trojan_config = "%s.json" % trojan_id
 data_path = "data/%s/" % trojan_id
