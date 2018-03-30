@@ -62,7 +62,7 @@ def get_file_contents(filepath):
 
     gh, repo, branch = connect_to_github()
     print("branch link : ", branch.links)
-    tree = branch.commit.commit.tree.recurse()
+    tree = branch.commit.commit.tree.refresh().recurse()
 
     for filename in tree.tree:
 
